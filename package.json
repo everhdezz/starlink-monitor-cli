@@ -1,0 +1,20 @@
+{
+  "name": "starlink-monitor-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Ever Hernandez (https://github.com/everhdezz)",
+  "license": "MIT",
+  "bin": {
+    "starlink-monitor": "./src/index.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "cli-color": "^2.0.4",
+    "yargs": "13.2"
+  }
+}
