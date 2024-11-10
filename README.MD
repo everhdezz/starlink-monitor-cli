@@ -20,7 +20,6 @@ starlink-monitor config:api-url {apiUrl}
 echo "* * * * * starlink-monitor devices:ping" | sudo tee /etc/crond.d/starlink_monitor
 ```
 
-
 ## Usage
 
 ### List all devices
