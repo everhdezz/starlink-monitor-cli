@@ -11,7 +11,7 @@ const getGrpcDeviceInfo = require('../../helpers/getGrpcDeviceInfo');
 module.exports = async ({}) => {
     const devices = configManager.get('devices');
 
-    devices.map(pingDevice)
+    devices.map(pingDevice);
 
     process.exit(1);
 }
