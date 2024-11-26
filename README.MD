@@ -11,11 +11,11 @@ npm install -g everhdezz/starlink-monitor-cli
 ```
 
 ## Configuration
-1. You need update the api url.
+1. Update the api url.
 ```bash
 starlink-monitor config:api-url {apiUrl}
 ```
-2. You need update the api token.
+2. Cronjob settings
 ```bash
 echo "* * * * * starlink-monitor devices:ping" | sudo tee /etc/crond.d/starlink_monitor
 ```
