@@ -47,6 +47,7 @@ function get(value) {
 function set(config) {
     fs.writeFileSync(configFilePath, JSON.stringify({
         ...defaultConfigs,
+        ...loadConfig(),
         ...config,
     }, null, 4));
 }
