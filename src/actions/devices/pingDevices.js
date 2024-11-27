@@ -24,11 +24,11 @@ module.exports = async ({}) => {
     process.exit(1);
 }
 
-async function pingDevice({ token, server }) {
+async function pingDevice({ token, server, ignoreGrpc }) {
     try {
-        console.log(`Pinging device ${server.host}:${server.port}...`);
+        console.log(`Pinging device ${server?.host || '0'}:${server?.port || '0'}...`);
 
-        const deviceInfo = getGrpcDeviceInfo(server.host, server.port);
+        const deviceInfo = !ignoreGrpc ? getGrpcDeviceInfo(server.host, server.port) : null;
 
         return await axios
             .post(`api/device/ping`, deviceInfo, {

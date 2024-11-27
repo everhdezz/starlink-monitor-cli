@@ -38,6 +38,11 @@ Optionally, you can add the host and port.
 starlink-monitor devices:add {deviceToken} --host {host} --port {port}
 ```
 
+the gRPC protocol call can be ignored with the parameter --ignoreGrpc
+```bash
+starlink-monitor devices:add {deviceToken} --ignoreGrpc
+```
+
 ### Remove a device
 Remove a device by index (obtained from the devices:list command).
 ```bash

@@ -11,7 +11,8 @@ const getGrpcDeviceInfo = require('../../helpers/getGrpcDeviceInfo');
 module.exports = async ({
     deviceToken,
     host = '192.168.100.1',
-    port = '9200'
+    port = '9200',
+    ignoreGrpc = false,
 }) => {
     if (!deviceToken) {
         console.log(clc.yellow("[Warn] Token is required"));
@@ -20,8 +21,10 @@ module.exports = async ({
     }
 
     if (
-        !checkLocalDevice(host, port) ||
-        checkIfDeviceIsAlreadyAdded(host, port) ||
+        !ignoreGrpc && (
+            !checkLocalDevice(host, port) ||
+            checkIfDeviceIsAlreadyAdded(host, port)
+        ) ||
         checkIfTokenIsUsedByAnotherDevice(deviceToken) ||
         !(await checkToken(deviceToken))
     ) {
@@ -29,7 +32,9 @@ module.exports = async ({
     }
 
     addDevice({
-        server: { host, port }, token: deviceToken,
+        server: !ignoreGrpc ? { host, port } : undefined,
+        ignoreGrpc,
+        token: deviceToken,
     });
 
     console.log(clc.green('Device added successfully.'));
@@ -102,7 +107,12 @@ function checkIfTokenIsUsedByAnotherDevice(deviceToken) {
 }
 
 function addDevice(device) {
-    console.log(`Adding device ${device.server.host}:${device.server.port}...`);
+    if (device?.ignoreGrpc)  {
+        console.log(`Adding device wihtout grpc...`);
+    } else {
+        console.log(`Adding device ${device.server?.host}:${device.server?.port}...`);
+    }
+
     let devices = configManager.get('devices') || [];
 
     devices.push(device);
