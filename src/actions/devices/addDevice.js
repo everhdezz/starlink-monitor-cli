@@ -107,10 +107,12 @@ function checkIfTokenIsUsedByAnotherDevice(deviceToken) {
 }
 
 function addDevice(device) {
-    if (device?.ignoreGrpc)  {
+    if (device && device.ignoreGrpc) {
         console.log(`Adding device wihtout grpc...`);
+    } else if (device && device.server && device.server.host && device.server.port) {
+        console.log(`Adding device ${device.server.host}:${device.server.port}...`);
     } else {
-        console.log(`Adding device ${device.server?.host}:${device.server?.port}...`);
+        console.log(`Adding device with incomplete server details...`);
     }
 
     let devices = configManager.get('devices') || [];

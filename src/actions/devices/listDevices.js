@@ -15,6 +15,9 @@ module.exports = () => {
     }
 
     devices.map((device, index) => {
-        console.log(`${index + 1}) ${device?.server?.host}:${device?.server?.port}`);
+        const host = device && device.server && device.server.host ? device.server.host : 'unknown';
+        const port = device && device.server && device.server.port ? device.server.port : 'unknown';
+
+        console.log(`${index + 1}) ${host}:${port}`);
     });
 }

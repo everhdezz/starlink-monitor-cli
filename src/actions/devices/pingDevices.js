@@ -26,7 +26,9 @@ module.exports = async ({}) => {
 
 async function pingDevice({ token, server, ignoreGrpc }) {
     try {
-        console.log(`Pinging device ${server?.host || '0'}:${server?.port || '0'}...`);
+        const host = (server && server.host) || 'unknown';
+        const port = (server && server.port) || 'unknown';
+        console.log(`Pinging device ${host}:${port}...`);
 
         const deviceInfo = !ignoreGrpc ? getGrpcDeviceInfo(server.host, server.port) : null;
 
