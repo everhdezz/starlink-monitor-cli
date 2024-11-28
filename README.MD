@@ -17,7 +17,8 @@ starlink-monitor config:api-url {apiUrl}
 ```
 2. Cronjob settings
 ```bash
-echo "* * * * * starlink-monitor devices:ping" | sudo tee /etc/crond.d/starlink_monitor
+echo "* * * * * root starlink-monitor devices:ping" | sudo tee /etc/cron.d/starlink_monitor
+sudo chmod 644 /etc/cron.d/starlink_monitor
 ```
 
 ## Usage
